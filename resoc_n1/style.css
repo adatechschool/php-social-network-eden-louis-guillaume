@@ -2,17 +2,14 @@ body{
     background-color: #003;
     font-family: Arial;
 }
-
 a{text-decoration: none; color:black;}
 a:hover{text-decoration: underline;}
-
 body>header{
     background-color: #fff;
     display:flex;
     width:80em;
-    margin:0 auto 2em auto;    
+    margin:0 auto 2em auto;
     padding:0;
-
 }
 body>header img{
     height:5em;
@@ -46,7 +43,7 @@ body>header #user>a{
     padding:2em 0;
     width:100%;
 }
-body>header #user ul{ 
+body>header #user ul{
     display: none;
     position: absolute;
     padding:0;
@@ -54,7 +51,6 @@ body>header #user ul{
     margin-left:-5em;
     background-color: #fff;
     border: 1px solid #99b;
-
     z-index: 1;
 }
 body>header #user ul li a{
@@ -66,10 +62,8 @@ body>header #user ul li a{
 body>header #user:hover ul{
     display:block;
 }
-
-
 #wrapper{
-    display:flex;    
+    display:flex;
     width:80em;
     margin:0 auto 2em auto;
 }
@@ -77,14 +71,13 @@ body>header #user:hover ul{
     background-color: #fff;
     flex:1;
     padding:1em;
-    border-radius: 1em;    
+    border-radius: 1em;
 }
 #wrapper aside img{
     display: block;
     width:50%;
     margin:auto;
 }
-
 #wrapper main{
     flex:3;
     padding-left:1em;
@@ -102,7 +95,6 @@ body>header #user:hover ul{
     padding:0;
     font-weight: normal;
     font-size:1em;
-
 }
 #wrapper main article time{
     float:left;
@@ -121,7 +113,6 @@ body>header #user:hover ul{
 #wrapper main article footer small{
     float:left;
 }
-
 #wrapper.admin{flex-direction: row-reverse}
 #wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
 #wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
@@ -130,11 +121,8 @@ body>header #user:hover ul{
 #wrapper.admin nav{text-align: right;}
 #wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
 #wrapper.admin article p{float:left;margin:0;}
-
-
 .parameters dl dt{float:left;font-weight: bold;line-height: 1.5em;}
 .parameters dl dd{margin-left:15em;line-height: 1.5em;}
-
 .contacts {
     display:flex;
     flex-wrap: wrap;
@@ -150,7 +138,34 @@ body>header #user:hover ul{
     float:right;
     height: 5em;
 }
-
 pre{
     color:#aaa;
 }
+
+#newpost {
+    all:unset;
+    --bg: #e74c3c;
+    --text-color: #fff;
+    position: relative;
+    width: 200px;
+    border: none;
+    background: var(--bg);
+    color: var(--text-color);
+    padding: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.2s;
+    border-radius: 5px;
+    opacity: 0.8;
+    letter-spacing: 1px;
+    box-shadow: #c0392b 0px 7px 2px, #000 0px 8px 5px;
+  }
+  
+  #newpost:hover {
+    opacity: 1;
+  }
+  
+  #newpost:active {
+    top: 4px;
+    box-shadow: #c0392b 0px 3px 2px,#000 0px 3px 5px;
+  }
