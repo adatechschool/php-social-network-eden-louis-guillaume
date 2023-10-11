@@ -3,63 +3,35 @@ session_start();
 ?>
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>ReSoC - Flux</title>         
-        <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
-    </head>
-    <body>
-        <header>
-            <?php include('header.php'); ?>
-        </header>
-        <div id="wrapper">
+
+<head>
+    <meta charset="utf-8">
+    <title>ReSoC - Flux</title>
+    <meta name="author" content="Julien Falconnet">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <!-- bibliothèque d'icones -->
+    <script src="https://kit.fontawesome.com/7a1b45f3d5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <?php
+    include 'connexion_SQL.php';
+    $userId = intval($_GET['user_id']);
+    include('header.php'); ?>
+    <div id="wrapper">
+        <?php
+
+        ?>
+        <aside>
             <?php
-            /**
-             * Cette page est TRES similaire à wall.php. 
-             * Vous avez sensiblement à y faire la meme chose.
-             * Il y a un seul point qui change c'est la requete sql.
-             */
-            /**
-             * Etape 1: Le mur concerne un utilisateur en particulier
-             */
             $userId = intval($_GET['user_id']);
-            ?>
-            <?php
-            /**
-             * Etape 2: se connecter à la base de donnée
-             */
-            //$mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
             include 'connexion_SQL.php';
+            include 'profil.php';
             ?>
-
-            <aside>
-                <?php
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */
-                $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                //echo "<pre>" . print_r($user, 1) . "</pre>";
-                ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice <?php echo $user['alias'] ?>
-                        (ID n° <?php echo $userId ?>)
-                    </p>
-
-                </section>
-            </aside>
-            <main>
-                <?php
-                /**
-                 * Etape 3: récupérer tous les messages des abonnements
-                 */
-                $laQuestionEnSql = "
+        </aside>
+        <main>
+            <?php
+            $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
                     posts.id as post_id,
@@ -76,29 +48,17 @@ session_start();
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 * A vous de retrouver comment faire la boucle while de parcours...
-                 */
-                while ($post = $lesInformations->fetch_assoc())
-                {
-                    //echo "<pre>" . print_r($post, 1) . "</pre>";
-                    ?>     
-                         
-                
-                <?php include "post.php";
-                }
-                ?>
-        
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
+            while ($post = $lesInformations->fetch_assoc()) {
+                include "post.php";
+            }
+            ?>
+        </main>
+    </div>
+</body>
 
-            </main>
-        </div>
-    </body>
 </html>

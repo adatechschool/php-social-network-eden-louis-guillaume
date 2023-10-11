@@ -133,9 +133,10 @@ body > header #menu {
 body > header #menu a {
   width: fit-content;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: auto;
   text-align: center;
+  text-decoration: none;
 }
 
 body > header #menu i {

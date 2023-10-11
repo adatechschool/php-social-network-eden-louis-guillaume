@@ -1,44 +1,42 @@
-<article>
-
-<?php //Date de création du post ?>
-    <h3>
-        <time><?php echo $post['created'] ?></time>
-    </h3>
-
-<?php //Nom du créateur du post ?>
-    <address>par <a href=<?php echo 'wall.php?user_id='.$post['author_id'];?> style="text-decoration: none;"><?php echo $post['author_name'] ?></address>
-
-<?php //Contenu du post ?>
-    <div>
+<article class="post-card">
+    <header class="post-infos-section">
+        <img class="profile-pic" src="./oldnerd.jpeg">
+        <div class="post-author-date">
+            <h2 class="user-alias-heading">
+                <a href=<?= 'wall.php?user_id=' . $post['author_id'] ?>>
+                    <?php echo $post['author_name'] ?></a>
+            </h2>
+            <time class="post-date">
+                <?php echo $post['created'] ?>
+            </time>
+        </div>
+        <button class="follow-button">Suivre</button>
+    </header>
+    <section class="post-content">
         <p>
-            <?php echo $post['content']?>
+            <?php echo $post['content'] ?>
         </p>
-    </div>
+    </section>
+    <footer class="post-footer">
+        <a href=<?= "like.php?id=" . $post['post_id']; ?> style="text-decoration: none;"><button
+                class="button like-button">
+                <?= "🤮" . $post['like_number'] ?>
+            </button></a>
+        <a href="">
 
-    <footer>
-    <small>
-    <a href=<?= "like.php?id=" . $post['post_id']; ?> style="text-decoration: none;">🤮 <?php echo $post['like_number']; ?></a>
-</small>
-
-
-
-                            
-    <?php 
-// Séparer les tags puis les mettre dans un tableau 
-$str = $post['taglist'];
-if ($str !== null && is_string($str)) {
-    $delimiter = ",";
-    $parts = explode($delimiter, $str);
-
-    // Pour chaque tag il y a un # devant, ils sont séparés d'un espace et ils ont un lien cliquable
-    if (!empty($parts)){
-        foreach ($parts as $part) {
-            echo "<a href='tags.php?tag_id=$part'>#$part</a> ";
-        }
-    }
-}
- 
-?>
-
+            <?php
+            // Séparer les tags puis les mettre dans un tableau 
+            $str = $post['taglist'];
+            if ($str !== null && is_string($str)) {
+                $delimiter = ",";
+                $parts = explode($delimiter, $str);
+                if (!empty($parts)) {
+                    foreach ($parts as $part) {
+                        echo "<a href='tags.php?tag_id=" . $post["tag_id"] . ">#$part</a> ";
+                    }
+                }
+            }
+            ?>
+        </a>
     </footer>
 </article>
