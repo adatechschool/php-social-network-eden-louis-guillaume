@@ -46,7 +46,7 @@ session_start();
                 ?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3><?php echo $followers['alias'] ?></h3>
+                    <h3><a href=<?php echo 'wall.php?user_id='.$followers['id'];?> style="text-decoration: none;"><?php echo $followers['alias'] ?></h3>
                     <p>id:<?php echo $followers['id'] ?></p>
                 </article>
                 <?php }?>

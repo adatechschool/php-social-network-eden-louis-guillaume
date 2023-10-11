@@ -56,6 +56,7 @@ session_start();
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
+                    posts.id as post_id,
                     users.alias as author_name, users.id as author_id,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 

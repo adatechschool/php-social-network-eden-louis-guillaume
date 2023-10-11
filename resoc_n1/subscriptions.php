@@ -45,10 +45,10 @@ session_start();
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
                 while ($subscription = $lesInformations->fetch_assoc()){
-                //print_r($subscription);?>
+                // print_r($subscription);?>
                 <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3><?php echo $subscription['alias'] ?></h3>
+                    <h3><a href=<?php echo 'wall.php?user_id='.$subscription['id'];?> style="text-decoration: none;"><?php echo $subscription['alias'] ?></h3>
                     <p>Id:<?php echo $subscription['id'] ?></p>                    
                 </article>
                 <?php }

@@ -50,6 +50,7 @@ session_start();
                         le mot-clé <?php echo "<b>" . $tag['label'] . "</b>" ?>
                         (n° <?php echo $tagId ?>)
                     </p>
+                    
 
                 </section>
             </aside>

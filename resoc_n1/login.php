@@ -11,7 +11,7 @@ session_start();
     </head>
     <body>
         <header>
-        <?php include('header.php'); ?>
+        <!-- <?php include('header.php'); ?> -->
         </header>
 
         <div id="wrapper" >
@@ -30,7 +30,7 @@ session_start();
                     // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
                     // si on recoit un champs email rempli il y a une chance que ce soit un traitement
                     $enCoursDeTraitement = isset($_POST['email']);
-                    print_r($_POST);
+                    // print_r($_POST);
                     if ($enCoursDeTraitement)
                     {
                         // on ne fait ce qui suit que si un formulaire a été soumis.
@@ -71,6 +71,9 @@ session_start();
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                             $_SESSION['connected_id']=$user['id'];
                             $_SESSION['connected_alias']=$user['alias'];
+
+                            header('Location: wall.php?user_id=' .$_SESSION['connected_id']);
+    exit;
                         }
                     }
                     ?>                     

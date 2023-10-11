@@ -23,6 +23,7 @@ session_start();
              * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
              */
             $userId =intval($_GET['user_id']);
+            
             ?>
             <?php
             /**
@@ -45,20 +46,48 @@ session_start();
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
-                        (n° <?php echo $userId ?>)
-                    </p>
-                    <?php  if (intval($_GET['user_id'])==$_SESSION['connected_id']){ 
-                    echo "<a href='newpost.php'><button id='newpost'>
-                        Nouveau post !
-                    </button></a>";}
-                            else {
-                                echo "<a href='subscriptions.php'><button id='newpost'>
-                                S'abonner
-                            </button></a>";
-                            } ?>
-                </section>
+                <section>
+    <h3>Présentation</h3>
+    <p>Sur cette page vous trouverez tous les messages de l'utilisatrice : <?php echo $user['alias'] ?>
+        (n° <?php echo $userId ?>)
+    </p>
+    <?php if (isset($_SESSION['connected_id'])) {
+        // Vérifiez si l'utilisateur est sur son propre mur
+        if ($_SESSION['connected_id'] == $userId) {
+            // Utilisateur sur son propre mur, affichez le bouton "Nouveau post"
+            echo "<a href='newpost.php'><button id='newpost'>Nouveau post !</button></a>";
+        } else {
+            // Vérifiez si l'utilisateur est déjà abonné à la personne
+            $isFollowingQuery = $mysqli->prepare('SELECT * FROM followers WHERE followed_user_id = ? AND following_user_id = ?');
+            $isFollowingQuery->bind_param('ii', $userId, $_SESSION['connected_id']);
+            $isFollowingQuery->execute();
+            $result = $isFollowingQuery->get_result();
+
+            if ($result->num_rows > 0) {
+                // L'utilisateur est abonné, affichez le bouton "Se désabonner"
+                echo "<a href='follow.php?followedid=$userId'><button id='newpost'>Se désabonner</button></a>";
+            } else {
+                // L'utilisateur n'est pas abonné, affichez le bouton "S'abonner"
+                echo "<a href='follow.php?followedid=$userId'><button id='newpost'>S'abonner</button></a>";
+            }
+        }
+    } ?>
+          <p>
+          <?php 
+          
+        // Vérifiez si l'utilisateur est sur son propre mur
+        if ($_SESSION['connected_id'] == $userId) {
+            // Utilisateur sur son propre mur, affichez le bouton "Nouveau post"
+            echo "<a href='logout.php'><button>Deconnexion</button></a>";
+        }
+    
+   
+            ?>
+            </p>
+</section>
+
+
+
             </aside>
             <main>
                 <?php
@@ -66,7 +95,7 @@ session_start();
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, users.id as author_id, 
+                    SELECT posts.content, posts.created, users.alias as author_name, posts.id as post_id, users.id as author_id, 
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
