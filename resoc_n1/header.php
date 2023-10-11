@@ -4,9 +4,9 @@
         <hr class="vert-line" />
         <a href=<?php echo 'subscriptions.php?user_id=' . $_SESSION['connected_id']; ?>>Mes abonnements</a></li>
         <hr class="vert-line" />
-        <a href=<?php echo 'wall.php?user_id=' . $_SESSION['connected_id']; ?>>Mur</a>
-        <hr class="vert-line" />
         <a href=<?php echo 'followers.php?user_id=' . $_SESSION['connected_id']; ?>>Mes suiveurs</a>
+        <hr class="vert-line" />
+        <a href=<?php echo 'wall.php?user_id=' . $_SESSION['connected_id']; ?>>Mur</a>
         <hr class="vert-line" />
         <a href=<?php echo 'feed.php?user_id=' . $_SESSION['connected_id']; ?>>Flux</a>
         <hr class="vert-line" />

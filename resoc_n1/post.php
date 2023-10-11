@@ -18,25 +18,24 @@
         </p>
     </section>
     <footer class="post-footer">
-        <a href=<?= "like.php?id=" . $post['post_id']; ?> style="text-decoration: none;"><button
-                class="button like-button">
-                <?= "🤮" . $post['like_number'] ?>
-            </button></a>
-        <a href="">
+        <a href=<?= "like.php?id=" . $post['post_id']; ?> style="text-decoration: none;">
+            <button class="like-button">
+                🤮
+                <?= $post['like_number'] ?>
+            </button>
 
-            <?php
-            // Séparer les tags puis les mettre dans un tableau 
-            $str = $post['taglist'];
+        </a>
+        <ul class="taglist">
+            <?php $str = $post['taglist'];
             if ($str !== null && is_string($str)) {
                 $delimiter = ",";
                 $parts = explode($delimiter, $str);
                 if (!empty($parts)) {
                     foreach ($parts as $part) {
-                        echo "<a href='tags.php?tag_id=" . $post["tag_id"] . ">#$part</a> ";
+                        echo "<a href='' class='taglist-element'>#" . $part . "</a>";
                     }
                 }
-            }
-            ?>
-        </a>
+            } ?>
+        </ul>
     </footer>
 </article>

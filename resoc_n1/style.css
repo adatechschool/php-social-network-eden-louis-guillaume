@@ -3,7 +3,7 @@
 html {
   --main-hl-color: #bdbf09;
   --off-black: #1b2122;
-  --faded-black: hsl(0, 0%, 34%);
+  --faded-black: #4B4B4B;
   --gray: #4b4b4b;
 }
 * {
@@ -11,19 +11,28 @@ html {
   padding: 0;
 }
 
+.like-button {
+  font-size: 1.25rem;
+}
+
+.taglist-element {
+  margin-top: auto;
+}
+
 body {
   align-items: flex-start;
   background: linear-gradient(122.34deg, #bdbf09 5.97%, #7d8261 95.09%);
   color: var(--off-black);
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   font-family: "Atkinson Hyperlegible";
   gap: 16px;
   justify-content: center;
   padding: 16px 120px;
   box-sizing: border-box;
-  height: 100vh;
-  width: 100vw;
+  width: 100%;
+  height: fit-content;
+  min-height: 100vh;
 }
 
 .follow-button {
@@ -34,6 +43,12 @@ body {
 .post-infos-section > .follow-button {
   align-self: center;
   justify-self: flex-end;
+}
+
+.post-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 a:hover {
@@ -54,6 +69,13 @@ body > header {
   min-width: min-content;
   padding: 12px 16px;
   width: 100%;
+}
+
+.taglist {
+  display: flex;
+  width: fit-content;
+  gap: 4px;
+  color: var(--faded-black);
 }
 
 time {
@@ -81,15 +103,14 @@ input.button-like {
 }
 
 #wrapper {
-  display: flex;
+  display: inline-flex;
   width: 100%;
-  height: 100%;
   flex-direction: row;
   gap: 16px;
 }
 
 main {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 16px;
   height: 100%;
@@ -134,9 +155,8 @@ body > header #menu a {
   width: fit-content;
   font-weight: 700;
   font-size: 1.25rem;
-  line-height: auto;
+  line-height: 1.25rem;
   text-align: center;
-  text-decoration: none;
 }
 
 body > header #menu i {
@@ -180,13 +200,21 @@ article {
   height: 100%;
 }
 
+.post-date {
+  color: var(--faded-black);
+}
+
 .profile-info-section {
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-content: flex-start;
   justify-content: center;
-  gap: 4px;
+  gap: 2px;
   flex-grow: 1;
+}
+
+.profile-info-section > p {
+  color: var(--faded-black);
 }
 
 textarea,
@@ -219,7 +247,7 @@ i {
 }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 button,
@@ -309,6 +337,7 @@ form {
   flex-direction: column;
   gap: 16px;
   justify-content: flex-start;
+  width: min(420px, fit-content);
 }
 
 #wrapper.vertical {

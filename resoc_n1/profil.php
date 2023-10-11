@@ -54,11 +54,11 @@
 
         if ($result->num_rows > 0) {
             // L'utilisateur est abonné, affichez le bouton "Se désabonner"
-            echo "<a href='follow.php?followedid=$userId'><button id='newpost' class='unfollow-button'>Se désabonner</button></a>";
+            echo "<a href='follow.php?followedid=$userId'><button id='newpost' class='unfollow-button' aria-label='ne plus suivre cet.te utilisateur.ice'>Se désabonner</button></a>";
         } else {
             // L'utilisateur n'est pas abonné, affichez le bouton "S'abonner"
-            echo "<a href='follow.php?followedid=$userId'><button id='newpost' class='follow-button'>S'abonner</button></a>";
+            echo "<a href='follow.php?followedid=$userId'><button id='newpost' class='follow-button' aria-label='ne plus suivre cet.te utilisateur.ice'>S'abonner</button></a>";
         }
     } ?>
-    <button class="follow-button">Suivre</button>
+
 </article>

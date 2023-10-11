@@ -18,7 +18,6 @@ session_start();
     include('header.php');
     include 'connexion_SQL.php'; ?>
     <div id="wrapper">
-
         <aside>
             <?php
             include 'profil.php';
