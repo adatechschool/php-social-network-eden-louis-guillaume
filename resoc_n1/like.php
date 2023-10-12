@@ -1,5 +1,5 @@
-<?php
-include 'connexion_SQL.php';
+<?php session_start();
+$mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
 if (isset($_GET['id'])) {
     // Obtenez la valeur de 'id' depuis $_GET
     $getid = (int) $_GET['id'];

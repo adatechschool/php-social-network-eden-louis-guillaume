@@ -4,7 +4,7 @@
                 SELECT users.*, 
                 count(DISTINCT posts.id) as totalpost, 
                 count(DISTINCT recieved.user_id) as totalrecieved, 
-                count(DISTINCT followed_by.following_user_id)
+                count(DISTINCT followed_by.following_user_id) as followers
                 FROM users 
                 LEFT JOIN posts ON posts.user_id=users.id 
                 LEFT JOIN likes as recieved ON recieved.post_id=posts.id 

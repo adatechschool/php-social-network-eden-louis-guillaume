@@ -1,5 +1,7 @@
 <?php
 session_start();
+$userId = intval($_GET['user_id']);
+include 'connexion_SQL.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -8,33 +10,24 @@ session_start();
     <meta charset="utf-8">
     <title>ReSoC - Mes abonnements</title>
     <meta name="author" content="Julien Falconnet">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <!-- bibliothèque d'icones -->
+    <script src="https://kit.fontawesome.com/7a1b45f3d5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'header.php';
+    ?>
     <div id="wrapper">
         <aside>
-            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
-            <section>
-                <h3>Présentation</h3>
-                <p>Sur cette page vous trouverez la liste des personnes dont
-                    l'utilisatrice
-                    n°
-                    <?php echo intval($_GET['user_id']) ?>
-                    suit les messages
+            <article>
+                <h1>Abonnements</h1>
+                <p>Voici la liste de toutes les personnes que vous suivez.
                 </p>
-
-            </section>
+            </article>
         </aside>
         <main class='contacts'>
             <?php
-            // Etape 1: récupérer l'id de l'utilisateur
-            $userId = intval($_GET['user_id']);
-            // Etape 2: se connecter à la base de donnée
-            //$mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
-            include 'connexion_SQL.php';
-            // Etape 3: récupérer le nom de l'utilisateur
             $laQuestionEnSql = "
                     SELECT users.* 
                     FROM followers 
@@ -43,23 +36,11 @@ session_start();
                     GROUP BY users.id
                     ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
-            // Etape 4: à vous de jouer
-            //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
             while ($subscription = $lesInformations->fetch_assoc()) {
-                // print_r($subscription);?>
-                <article>
-                    <img src="user.jpg" alt="blason" />
-                    <h3><a href=<?php echo 'wall.php?user_id=' . $subscription['id']; ?> style="text-decoration: none;">
-                            <?php echo $subscription['alias'] ?>
-                    </h3>
-                    <p>Id:
-                        <?php echo $subscription['id'] ?>
-                    </p>
-                </article>
-            <?php }
+                include 'subbed.php';
+            }
             ?>
         </main>
     </div>
 </body>
-
 </html>

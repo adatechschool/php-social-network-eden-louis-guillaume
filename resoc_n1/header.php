@@ -2,9 +2,9 @@
     <nav id="menu">
         <a aria-label="bouton paramètres utilisateurs" id="settings-nav-link" href=<?php echo 'settings.php?user_id=' . $_SESSION['connected_id']; ?>><i id="settings-icon" class="fa-solid fa-gear"></i></a>
         <hr class="vert-line" />
-        <a href=<?php echo 'subscriptions.php?user_id=' . $_SESSION['connected_id']; ?>>Mes abonnements</a></li>
+        <a href=<?php echo 'subscriptions.php?user_id=' . $_SESSION['connected_id']; ?>>Abonnements</a>
         <hr class="vert-line" />
-        <a href=<?php echo 'followers.php?user_id=' . $_SESSION['connected_id']; ?>>Mes suiveurs</a>
+        <a href=<?php echo 'followers.php?user_id=' . $_SESSION['connected_id']; ?>>Abonnés</a>
         <hr class="vert-line" />
         <a href=<?php echo 'wall.php?user_id=' . $_SESSION['connected_id']; ?>>Mur</a>
         <hr class="vert-line" />

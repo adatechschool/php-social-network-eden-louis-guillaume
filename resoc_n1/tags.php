@@ -45,7 +45,7 @@ session_start();
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
+                    <h1>Tags</h1>
                     <p>Sur cette page vous trouverez les derniers messages comportant
                         le mot-clé <?php echo "<b>" . $tag['label'] . "</b>" ?>
                         (n° <?php echo $tagId ?>)
