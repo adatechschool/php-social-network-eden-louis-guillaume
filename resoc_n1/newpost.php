@@ -28,7 +28,7 @@
                 if (!$ok) {
                     echo " Impossible d'ajouter le message: " . $mysqli->error;
                 } else {
-                    echo " Message posté en tant que :" . $_SESSION['connected_alias'];
+                    echo " Message envoyé ! " . $_SESSION['connected_alias'];
                 }
             }
             ?>

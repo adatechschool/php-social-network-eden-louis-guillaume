@@ -2,10 +2,10 @@
     <header class="post-infos-section">
         <img class="profile-pic" src="./oldnerd.jpeg">
         <div class="post-author-date">
-            <h2 class="user-alias-heading">
+            <h3 class="user-alias-heading">
                 <a href=<?= 'wall.php?user_id=' . $post['author_id'] ?>>
                     <?php echo $post['author_name'] ?></a>
-            </h2>
+            </h3>
             <time class="post-date">
                 <?php echo $post['created'] ?>
             </time>

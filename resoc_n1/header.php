@@ -11,11 +11,8 @@
         <a href=<?php echo 'feed.php?user_id=' . $_SESSION['connected_id']; ?>>Flux</a>
         <hr class="vert-line" />
         <a href=<?php echo 'news.php'; ?>>Actualités</a>
-        <?php
-        if ($_SESSION['connected_id'] == $userId) {
-            echo "<hr class='vert-line' /><a href='logout.php'>Deconnexion</a>";
-        }
-        ?>
+        <hr class='vert-line' />
+        <a href='logout.php'>Deconnexion</a>
     </nav>
     <form id="search-bar" class="text-area">
         <label for="search-field" hidden>Rechercher un.e utilisateur.ice</label><input type="text" id="search-field"

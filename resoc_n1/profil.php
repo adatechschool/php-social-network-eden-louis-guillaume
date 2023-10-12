@@ -32,7 +32,7 @@
             ; ?>
         </p>
 
-        <?php if ($user['followed_by']) {
+        <?php /*if ($user['followed_by']) {
             echo "<p class='user-followers-count'>" . $user['followed_by'] . " followers</p>";
         } else {
             echo "<p class='user-followers-count'>0 followers</p>";
@@ -42,7 +42,7 @@
             echo "<p class='user-likes-count'>🤮" . $user['totalrecieved'] . "reçus</p>";
         } else {
             echo "<p class='user-likes-count'>🤮 0</p>";
-        } ?>
+        } */?>
 
     </section>
     <?php
